@@ -1,0 +1,80 @@
+extend base
+block content 
+    
+    main.main
+        div.mt-4
+            h1(style="text-align:center;font-size:32px") Create a new tour
+            form(class="mt-4" method="POST" action='/tour/stored' enctype='multipart/form-data')
+                div.row.mt-4(style="font-size:20px")
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourName") Tour Name
+                        input(type="text" class="form-control" id="tourName" name="name" style="height:45px;font-size:15px" placeholder="Enter tour name" maxlength="40" minlength="10" required)
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourDescription") Tour Description
+                        input(type="text" class="form-control" id="tourDescription" style="height:45px;font-size:15px" name="description" placeholder="Enter tour description" required)
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourPrice") Tour Price
+                        input(type="number" class="form-control" id="tourprice" name="price" style="height:45px;font-size:15px" placeholder="Enter tour price" required)
+                    div.col-md-6.form-group.mt-5    
+                        input.form__upload(type='file', accept='image/*', id ='images' , name='images' multiple)
+                        label(for='images') Images
+                        input.form__upload(type='file', accept='image/*', id ='imageCover' , name='imageCover')
+                        label(for='imageCover') ImageCover
+                    //- div.col-md-6.form-group.mt-5  
+                    //-     label(for="tourImg") Tour Image
+                    //-     input(type="text" class="form-control" id="tourImg" name="tourImg" style="height: 45px;font-size: 15px;" placeholder="Enter tour name" required)
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourDuration") Tour Duration
+                        input(type="number" class="form-control" id="tourDuration" name="duration" style="height:45px;font-size:15px" placeholder="Enter tour duration" required)
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourMaxGroupSize") Tour Max Group Size
+                        input(type="number" class="form-control" id="tourMaxGroupSize" name="maxGroupSize" style="height:45px;font-size:15px" placeholder="Enter tour max group size" required)
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourDifficulty") Tour Difficulty
+                        select(class="form-control" id="tourDifficulty" name="difficulty" style="height:45px;font-size:15px" required)
+                            option(value="easy") Easy
+                            option(value="medium") Medium
+                            option(value="difficult") difficult
+                    div.col-md-6.form-group.mt-5
+                        label(for="tourSummary") Tour Summary
+                        input(type="text" class="form-control" id="tourSummary" name="summary" style="height:45px;font-size:15px" placeholder="Enter tour summary" required)
+                    
+                div.wrapper.mt-8(style="display:flex;justify-content:center;")
+                    button( type="submit" class="btn btn-primary" style="font-size:20px;width:30%;border-radius:25px") Create   
+                    
+                    
+                    
+            
+
+
+
+
+
+//- <div class="mt-4">
+//-     <h3 style="text-align:center;">Post Menu Lunch</h3>
+//-     <form class="mt-4" method="POST" action="/lunch/store">
+//-         <div class="row">
+//-             <div class="form-group col-lg-6">
+//-                 <label for="name">Tên món ăn</label>
+//-                 <input type="text" placeholder="Gọi Tên Món Ăn Không Được Quá 5 TỪ" class="form-control" id="name"
+//-                     name="name">
+//-             </div>
+//-             <div class="form-group col-lg-6">
+//-                 <label for="price">Price</label>
+//-                 <input type="number" placeholder="Gọi Tên Món Ăn Không Được Quá 5 TỪ" class="form-control" id="price"
+//-                     name="price">
+//-             </div>
+//-             <div class="form-group col-lg-6">
+//-                 <label for="description">Description</label>
+//-                 <input type="text" class="form-control" id="description" name="description">
+//-             </div>
+//-             <div class="form-group col-lg-6">
+//-                 <label for="image">Image</label>
+//-                 <input type="text" class="form-control" id="image" name="image">
+//-             </div>
+//-         </div>
+//-         <div class="wrapper" style="text-align: center">
+//-             <button type="submit" class="btn btn-primary ">Gọi Món</button>
+//-         </div>
+//-     </form>
+//- </div>

@@ -4,6 +4,21 @@ const authController = require('../controllers/authController');
 const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
+
+router.get('/stored', viewsController.stored);
+// router.post('/tour/store', viewsController.storeTour);
+router.get(
+  '/create',
+  viewsController.getsTour
+);
+router
+  .route('/tour/stored')
+  .get(viewsController.storedTour)
+  .post(
+    viewsController.creatTour,
+    viewsController.uploadTourImages,
+    viewsController.resizeTourImages
+  );
 router.get('/', bookingController.createBookingCheckout, authController.isLoggedIn, viewsController.getOverview);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/signin', authController.isLoggedIn, viewsController.getSigIn);

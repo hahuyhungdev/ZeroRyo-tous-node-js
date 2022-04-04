@@ -20045,7 +20045,21 @@ iframe {
     border-bottom-color: #DF6951;
 }
 
-
+.an{
+    display: block;
+    display: -webkit-box;
+    height: 16px*1.3*3;
+    height: 60px;
+    font-size: 14px;
+    line-height: 1.3;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    margin: 0;
+    height: 82px;
+}
 /*-----------------------------------------------
 |   User Styles
 -----------------------------------------------*/

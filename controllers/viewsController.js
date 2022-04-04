@@ -1,8 +1,37 @@
+const multer = require('multer');
+const sharp = require('sharp');
 const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only images.', 400), false);
+  }
+};
+
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter
+});
+
+exports.uploadTourImages = upload.fields([
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 }
+ 
+]);
+
+exports.resizeTourImages = catchAsync(async (req, res, next) => {
+  console.log(req.files);
+  next();
+});
+
 
 exports.getOverview = catchAsync(async (req, res) => {
   // 1) Get tour data from collection
@@ -86,3 +115,46 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     user: updatedUser
   });
 });
+
+exports.stored = catchAsync(async (req, res, next) => {
+  const users = await User.find();
+  res.status(200).render('stored', {
+    title: 'Stored Users',
+    users
+  });
+});
+
+// exports.storeTour = catchAsync(async (req, res, next) => {
+//   const newTour = await new Tour(req.params.body);
+//   await newTour.save();
+//   res.status(200).redirect('/tour/stored');
+// })
+
+exports.storedTour = catchAsync(async (req, res, next) => {
+  const tours = await Tour.find();
+  res.status(200).render('storedTour', {
+    title: 'Stored Tour',
+    tours
+  });
+});
+// getTour
+exports.getsTour = catchAsync(async (req, res, next) => {
+  res.status(200).render('createtours');
+});
+//createtours
+exports.creatTour = catchAsync(async (req, res, next) => {
+  const newTour = await new Tour({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    duration: req.body.duration,
+    maxGroupSize: req.body.maxGroupSize,
+    imageCover: req.body.imageCover,
+    images: req.body.images,
+    difficulty: req.body.difficulty,
+    summary: req.body.summary
+  });
+  await newTour.save();
+  res.status(200).redirect('/tour/stored');
+});
+

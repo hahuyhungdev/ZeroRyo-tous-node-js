@@ -166,7 +166,12 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
   }
 
   const tours = await Tour.find({
-    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } }
+    startLocation: {
+      geoWithin: {
+        type: '',
+        centerSphere: [parseFloat(lng), parseFloat(lat)]
+      }
+    }
   });
 
   res.status(200).json({
@@ -219,3 +224,5 @@ exports.getDistances = catchAsync(async (req, res, next) => {
     }
   });
 });
+
+

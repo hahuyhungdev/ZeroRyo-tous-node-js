@@ -1,0 +1,34 @@
+extends base
+block content
+  
+   section#properties.section-property
+   div.container
+      h1.content-center-x(style="font-size:30px") List Stored Tours
+      a.content-a(href='#' style="font-size:15px") Tour Has Been Deleted
+      svg.heading-box__icon 
+        use(xlink:href='/img/icons.svg#icon-trash')
+   div.container-sm.d-grid.grid-center-v.u-margin-bottom-xl(style="text-align:center;font-size:18px;")
+      table.table.mt-4
+         thead
+            tr 
+                th.scope.col #
+                th.scope.col Name
+                th.scope.col Description
+                th.scope.col Price
+                th.scope.col Duration
+                th.scope.col MaxGroupSize
+                th.scope.col Difficult 
+                th.scope.col Summary 
+            each tour in tours
+                tr(style="text-align: center")      
+                    td.scope.col  
+                    td.scope.col=`${tour.name}`
+                    td.scope.col.an=`${tour.description}` 
+                    td.scope.col=`${tour.price}`
+                    td.scope.col=`${tour.duration}`
+                    td.scope.col=`${tour.maxGroupSize}`
+                    td.scope.col=`${tour.difficulty}`
+                    td.scope.col=`${tour.summary}`
+                td
+                //- a.btn-link-a(href='',data-toggle='modal',data-id='user.id',data-target='delete-modal') Delete
+                       
